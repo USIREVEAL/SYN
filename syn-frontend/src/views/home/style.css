@@ -1,0 +1,65 @@
+/*/https://colorhunt.co/palette/1a1a2e16213e0f3460e94560*/
+
+.Home {
+  text-align: center;
+  margin-top: 50px;
+  flex: 1 1 auto;
+}
+
+.App {
+  text-align: center;
+}
+
+.RVLink {
+  color: white;
+  text-decoration: none;
+}
+
+.RVLinkPaper {
+  padding: 10px;
+}
+
+.RVLinkPaper.disabled{
+  padding: 10px;
+  background-color: gray;
+}
+
+.RVLinkPaper:hover {
+  background-color: #0F3460;
+}
+
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

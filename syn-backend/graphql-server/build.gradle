@@ -1,0 +1,32 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
+    id 'java'
+}
+
+group 'com.usi.ch.syn'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'com.graphql-java:graphql-java:18.0'
+    implementation 'com.graphql-java:graphql-java-spring-boot-starter-webmvc:2.0'
+    implementation 'com.google.guava:guava:31.1-jre'
+
+    implementation project(":core")
+    implementation project(":analyzer")
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+task prepareKotlinBuildScriptModel {
+
+}

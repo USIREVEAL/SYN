@@ -1,0 +1,23 @@
+plugins {
+    id 'java-library'
+}
+
+group 'com.usi.ch.syn'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+    implementation 'org.apache.commons:commons-math3:3.6.1'
+
+//    implementation "io.reactivex.rxjava3:rxjava:3.1.4"
+
+}
+
+test {
+    useJUnitPlatform()
+}

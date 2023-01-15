@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+  syn-ui:
+    build: .
+    image: syn-frontend
+    ports:
+      - '3000:3000'
+    environment:
+      - REACT_APP_GRAPHQL_SERVER=http://localhost:8080/graphql

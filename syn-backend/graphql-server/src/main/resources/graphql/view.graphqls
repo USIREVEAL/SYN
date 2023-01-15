@@ -1,0 +1,122 @@
+type View {
+    animationsCount: Int
+    viewAnimationList: [ViewAnimation]!
+    musicSheets: [MusicSheet]!
+}
+
+type ViewAnimation {
+    id: Int!,
+    viewFigures: [ViewFigure]!
+    projectVersionIds: [Int]!
+    projectVersionSummary: ProjectVersionSummary
+    debugStatistics: DebugStatistics
+    tsFrom: Int
+    tsTo: Int
+}
+
+type DebugStatistics {
+    commits: Int!
+    linesAdded: Int!
+    linesRemoved: Int!
+    filesAdded: Int!
+    filesRemoved: Int!
+    filesChanged: Int!
+    filesRenamed: Int!
+    filesMoved: Int!
+}
+
+type ProjectVersionSummary {
+    firstTs: Int
+    lastTs: Int
+    changeSummary: ChangeSummary
+}
+
+type ChangeSummary {
+    type: String,
+    count: Int
+}
+
+type ViewFigure {
+    id: Int
+    fileHistoryId: Int
+    position: FigurePosition
+    color: String
+    height: Float
+    age: Int
+    enabled: Boolean
+    shape: String
+    opacity: Float
+    size: Int
+}
+
+type FigurePosition {
+    x: Int,
+    y: Int,
+    z: Int
+}
+
+type MusicSheet {
+    measures: [Measure]!
+}
+
+type Measure {
+    tempo: Int
+    timestamp: Int
+    note: Int
+    amplitude: Float
+}
+
+input ViewSpecificationInput {
+    versionGroupingStrategy: GroupingStrategy!
+    versionGroupingChunkSize: Int!
+    colorPalette: ColorPaletteInput!
+    agingGroupingStrategy: GroupingStrategy!
+    agingStepSize: Int!
+    agingSteps: Int!
+    mapperOptions: MapperStrategyOptionsInput!
+    mapperStrategy: MapperStrategyName!
+    mapperMetricName: String!
+    figureSize: Int!
+    figureSpacing: Int!
+    fileTypeShape: [FileTypeShape]!
+    showDeletedEntities: Boolean = true
+    showUnmappedEntities: Boolean = true
+    fileTypeOpacity: [FileTypeOpacity]
+}
+
+input FileTypeShape {
+    fileType: String,
+    shapeName: String
+}
+
+input FileTypeOpacity {
+    fileType: String,
+    opacity: Float
+}
+
+input FileTypeMetricNames {
+    fileType: String!
+    metrics: [String]!
+}
+
+input ColorPaletteInput {
+    addColor: String!
+    renameColor: String!
+    moveColor: String!
+    deleteColor: String!
+    modifyColor: String!
+    baseColor: String!
+}
+
+input MapperStrategyOptionsInput {
+    buckets: Int
+    maxHeight: Int = -1
+}
+
+enum GroupingStrategy {
+    COMMIT_STRATEGY, TIMESTAMP_STRATEGY
+}
+
+enum MapperStrategyName {
+    BUCKET_COUNT_STRATEGY, LINEAR_STRATEGY, NORMALIZER_STRATEGY, DEFAULT_STRATEGY, NONE, BUCKET_VALUE_STRATEGY, BUCKET_VALUE_LINEAR_STRATEGY
+}

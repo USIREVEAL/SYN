@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  syn-ui:
+    image: "syn-frontend:latest"
+    ports:
+      - '3000:3000'
+
+  syn-backend:
+    image: "syn-backend:latest"
+    ports:
+      - '8080:8080'
+    environment:
+      - SYN_HOME=/syn_data
+    volumes:
+      - "./syn_data:/syn_data"
+

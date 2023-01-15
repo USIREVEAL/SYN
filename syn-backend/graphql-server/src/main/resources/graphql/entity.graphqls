@@ -1,0 +1,18 @@
+interface Entity {
+    id: Int!
+}
+
+interface CodeEntity implements Entity {
+    id: Int!
+
+    metrics: [Metric!]!
+}
+
+type Metric {
+    name: String!,
+    value: String!
+}
+
+
+
+

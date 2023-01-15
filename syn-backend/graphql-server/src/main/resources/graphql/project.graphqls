@@ -1,0 +1,131 @@
+interface Project implements Entity & CodeEntity {
+    id: Int!
+    metrics: [Metric!]!
+
+    name: String!
+    path: String!
+    lastAnalysisTs: Int!
+    projectHistory: ProjectHistory
+}
+
+type LocalProject implements Project & Entity & CodeEntity {
+    id: Int!
+    metrics: [Metric!]!
+
+    name: String!
+    path: String!
+    lastAnalysisTs: Int!
+    projectHistory: ProjectHistory
+}
+
+type RemoteProject implements Project & Entity & CodeEntity {
+    id: Int!
+    metrics: [Metric!]!
+
+    name: String!
+    path: String!
+    lastAnalysisTs: Int!
+    projectHistory: ProjectHistory
+
+    projectURL: String!
+}
+
+type ProjectHistory implements Entity {
+    id: Int!
+
+    fileHistories: [FileHistory]!
+    projectVersions: [ProjectVersion]!
+}
+
+
+type FileHistory implements CodeEntity & Entity {
+    id: Int!
+    metrics: [Metric!]!
+
+    name: String!
+    path: String!
+    fileVersions: [FileVersion!]!
+    aliases: [String!]!
+    fileTypes: [String!]!
+}
+
+interface Version implements Entity & CodeEntity {
+    id: Int!
+    metrics: [Metric!]!
+
+    next: Version!
+    previous: Version!
+}
+
+type ProjectVersion implements Version & Entity & CodeEntity {
+    id: Int!
+    metrics: [Metric!]!
+
+    next: Version!
+    previous: Version!
+
+    fileVersions: [FileVersion!]!
+    timestamp: Int!
+    commitHash: String!
+    commitMessage: String!
+}
+
+type FileVersion implements Version & Entity & CodeEntity {
+    id: Int!
+    metrics: [Metric!]!
+
+    next: Version!
+    previous: Version!
+
+    parentProjectVersion: ProjectVersion!
+    fileHistory: FileHistory!
+    change: Change!
+}
+
+interface Change implements Entity {
+    id: Int!
+
+    linesAdded: Int!,
+    linesDeleted: Int!
+}
+
+type FileAddition implements Change & Entity {
+    id: Int!
+
+    linesAdded: Int!,
+    linesDeleted: Int!
+}
+
+type FileDeletion implements Change & Entity {
+    id: Int!
+
+    linesAdded: Int!,
+    linesDeleted: Int!
+}
+
+type FileMoving implements Change & Entity {
+    id: Int!
+
+    linesAdded: Int!,
+    linesDeleted: Int!
+
+    fromPath: String!,
+    toPath: String!
+}
+
+type FileRenaming implements Change & Entity {
+    id: Int!
+
+    linesAdded: Int!,
+    linesDeleted: Int!
+
+    fromName: String!,
+    toName: String!
+}
+
+type FileModification implements Change & Entity {
+    id: Int!
+
+    linesAdded: Int!,
+    linesDeleted: Int!
+}

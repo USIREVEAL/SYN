@@ -1,0 +1,51 @@
+// import {IEntityPositionStrategy} from "./EntityPositionStrategy.types";
+// import {EntityChange} from "../../components/BabylonProjectVisualizer/BabylonProjectVisualizer.types";
+// import {Vector3} from "@babylonjs/core";
+// import {BOX_SIZE, BOX_SPACING} from "../EntityPositionHelper";
+//
+//
+// export class EntityPositionMatrix implements IEntityPositionStrategy {
+//
+//     private entityIDPositionMap = new Map<number, Vector3>();
+//     private lastComputedID = 0;
+//     private direction = new Vector3(BOX_SPACING + BOX_SIZE, 0, 0)
+//     private segmentLength = 1;
+//     private currentPosition = new Vector3(0, 0, 0)
+//     private segmentComputed = 0;
+//
+//     constructor() {
+//         this.entityIDPositionMap.set(0, new Vector3(0, 0, 0))
+//     }
+//
+//
+//     public getBlockPosition(entity: EntityChange): Vector3 {
+//         const entityID = entity.id - 1
+//         if (!this.entityIDPositionMap.has(entityID)) {
+//             this.generateBlockPosition(entityID);
+//         }
+//         return this.entityIDPositionMap.get(entityID) as Vector3;
+//     }
+//
+//
+//     generateBlockPosition(entityID: number) {
+//         for (let k = this.lastComputedID + 1; k <= entityID; k++) {
+//             this.currentPosition = this.currentPosition.add(this.direction)
+//             ++this.segmentComputed;
+//
+//             this.entityIDPositionMap.set(k, this.currentPosition)
+//
+//             if (this.segmentComputed === this.segmentLength) {
+//                 this.segmentComputed = 0;
+//
+//                 this.direction = new Vector3(-this.direction.z, 0, this.direction.x)
+//                 if (this.direction.z === 0) {
+//                     this.segmentLength++
+//                 }
+//             }
+//
+//         }
+//         this.lastComputedID = entityID
+//     }
+//
+//
+// }

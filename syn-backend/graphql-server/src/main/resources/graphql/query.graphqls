@@ -1,0 +1,27 @@
+type Query {
+    projectList:  [PartialProjectInformation]!
+    project(projectId: Int!): Project
+    view(projectId: Int!, viewSpecification: ViewSpecificationInput!): View
+    partialView(projectId: Int!, viewSpecification: ViewSpecificationInput!, viewAnimationId: Int): View
+    fileHistory(projectId: Int!, fileHistoryId: Int!): FileHistory
+    projectVersion(projectId: Int!, projectVersionId: Int!): ProjectVersion
+    projectVersions(projectId: Int!, projectVersionsId: [Int]!): [ProjectVersion]!
+    groupingPreview(projectId: Int!, viewSpecification: ViewSpecificationInput!): Int
+    fileTypeCounter(projectId: Int!): [FileTypeCounter!]!
+    fileTypeMetrics(projectId: Int!, fileTypeFilter: [String]): [FileTypeMetrics!]!
+}
+
+type PartialProjectInformation {
+    id: Int!
+    name: String
+}
+
+type FileTypeCounter {
+    fileType: String!
+    count: Int!
+}
+
+type FileTypeMetrics {
+    fileType: String!
+    metrics: [String]
+}

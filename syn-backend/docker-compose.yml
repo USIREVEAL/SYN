@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  syn-backend:
+    image: "syn-backend:latest"
+    build: graphql-server
+    ports:
+      - '8080:8080'
+    environment:
+      - SYN_HOME=/syn_data
+
+  syn-cli:
+    image: "syn-cli:latest"
+    build: cli
+    environment:
+      - SYN_HOME=/syn_data

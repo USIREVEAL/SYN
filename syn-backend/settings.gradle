@@ -1,0 +1,13 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'syn'
+include 'core'
+include 'cli'
+include 'analyzer'
+include 'graphql-server'
+
+
